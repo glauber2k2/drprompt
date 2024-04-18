@@ -16,7 +16,6 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signIn } from 'next-auth/react'
 import { useToast } from '@/components/ui/use-toast'
-import { Loader2 } from 'lucide-react'
 
 const formSchema = z.object({
   email: z
@@ -55,8 +54,8 @@ export default function AuthForm() {
       <div className="mx-auto grid gap-6">
         <div className="grid gap-2 text-center">
           <h1 className="text-3xl font-bold">Login</h1>
-          <p className=" opacity-80">
-            Enter your email below to login to your account
+          <p className="opacity-80">
+            Receber o Magic Link para autenticação via Email.
           </p>
         </div>
 
@@ -87,10 +86,9 @@ export default function AuthForm() {
               className="w-full"
               disabled={form.formState.isSubmitting}
             >
-              {form.formState.isSubmitting && (
-                <Loader2 size={16} className="animate-spin" />
-              )}
-              Entrar
+              {form.formState.isSubmitting
+                ? 'Enviando...'
+                : 'Enviar Magic Link'}
             </Button>
           </form>
         </Form>

@@ -14,7 +14,7 @@ export default function auth() {
         />
         <h1 className="text-4xl font-thin">DrPrompt</h1>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center p-4">
         <AuthForm />
       </div>
     </div>

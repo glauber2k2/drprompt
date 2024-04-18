@@ -8,8 +8,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { Prompt } from '@prisma/client'
 
-export default function ListPrompts() {
+export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
   return (
     <div className="mx-auto md:w-2/3 space-y-4">
       <div className="flex items-center gap-2 justify-center">
@@ -37,17 +38,9 @@ export default function ListPrompts() {
       </div>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
-        <PromptCard />
+        {prompts.map((prompt) => (
+          <PromptCard key={prompt.id} data={prompt} />
+        ))}
       </div>
     </div>
   )
