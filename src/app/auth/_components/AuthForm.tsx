@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signIn } from 'next-auth/react'
 import { useToast } from '@/components/ui/use-toast'
+import { Loader2 } from 'lucide-react'
 
 const formSchema = z.object({
   email: z
@@ -81,7 +82,14 @@ export default function AuthForm() {
             />
             <div></div>
 
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting && (
+                <Loader2 size={16} className="animate-spin" />
+              )}
               Entrar
             </Button>
           </form>
