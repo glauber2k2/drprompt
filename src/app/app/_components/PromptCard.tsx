@@ -17,6 +17,12 @@ import { pt } from 'date-fns/locale'
 
 export default function PromptCard({ data }: { data: Prompt }) {
   const { toast } = useToast()
+
+  const isPostedToday =
+    new Date(data.createdAt).getDate() === new Date().getDate() &&
+    new Date(data.createdAt).getMonth() === new Date().getMonth() &&
+    new Date(data.createdAt).getFullYear() === new Date().getFullYear()
+
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(data.text)
@@ -37,7 +43,12 @@ export default function PromptCard({ data }: { data: Prompt }) {
         <div className="flex gap-2 items-center mr-auto">
           <Terminal />
           <span>
-            <h1 className="text-sm font-medium">{data.title}</h1>
+            <h1 className="text-sm font-medium flex items-center gap-2">
+              {data.title}
+              {isPostedToday && (
+                <span className="font-bold text-emerald-500 text-xs">NOVO</span>
+              )}
+            </h1>
             <h3 className="text-xs opacity-80">
               {formatDistanceToNow(data.updateAt, {
                 addSuffix: true,
