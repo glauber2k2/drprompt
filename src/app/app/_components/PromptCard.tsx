@@ -48,6 +48,9 @@ export default function PromptCard({ data }: { data: Prompt }) {
               {isPostedToday && (
                 <span className="font-bold text-emerald-500 text-xs">NOVO</span>
               )}
+              {data.updateAt.toISOString() !== data.createdAt.toISOString() && (
+                <span className=" opacity-80 text-xs">Editado</span>
+              )}
             </h1>
             <h3 className="text-xs opacity-80">
               {formatDistanceToNow(data.updateAt, {

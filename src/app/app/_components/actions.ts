@@ -1,7 +1,12 @@
-import { upsetPromptSchema } from './upsertPromptSchema'
+import { upsertPromptSchema } from './upsertPromptSchema'
 import { auth } from '@/services/auth'
 import { prisma } from '@/services/database'
 import { z } from 'zod'
+
+export async function getAllPrompts() {
+  const prompts = await prisma.prompt.findMany()
+  return prompts
+}
 
 export async function getUserPrompts() {
   const session = await auth()
@@ -13,7 +18,7 @@ export async function getUserPrompts() {
   return prompts
 }
 
-export async function upsetPrompt(input: z.infer<typeof upsetPromptSchema>) {
+export async function upsertPrompt(input: z.infer<typeof upsertPromptSchema>) {
   const session = await auth()
 
   if (!session?.user?.id) {
