@@ -10,9 +10,10 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { Prompt } from '@prisma/client'
-
 import React from 'react'
 import { useToast } from '@/components/ui/use-toast'
+import { formatDistanceToNow } from 'date-fns'
+import { pt } from 'date-fns/locale'
 
 export default function PromptCard({ data }: { data: Prompt }) {
   const { toast } = useToast()
@@ -37,7 +38,12 @@ export default function PromptCard({ data }: { data: Prompt }) {
           <Terminal />
           <span>
             <h1 className="text-sm font-medium">{data.title}</h1>
-            <h3 className="text-xs opacity-80">{data.userId || 'Undefined'}</h3>
+            <h3 className="text-xs opacity-80">
+              {formatDistanceToNow(data.updateAt, {
+                addSuffix: true,
+                locale: pt,
+              })}
+            </h3>
           </span>
         </div>
         <TooltipProvider>
