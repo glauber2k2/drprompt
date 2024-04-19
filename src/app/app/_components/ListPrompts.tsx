@@ -3,7 +3,7 @@
 import React, { useCallback } from 'react'
 import PromptCard from './PromptCard'
 import { Input } from '@/components/ui/input'
-import { ChevronDown, Search } from 'lucide-react'
+import { Check, ChevronDown, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Popover,
@@ -70,21 +70,23 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
           </PopoverTrigger>
           <PopoverContent>
             <Button
-              variant={'outline'}
+              variant={'ghost'}
               onClick={() => {
                 router.push(pathname + '?' + '')
               }}
             >
+              {order == null && <Check size={16} />}
               Ordenar por criação
             </Button>
             <Button
-              variant={'outline'}
+              variant={'ghost'}
               onClick={() => {
                 router.push(
                   pathname + '?' + createQueryString('order', 'update'),
                 )
               }}
             >
+              {order == 'update' && <Check size={16} />}
               Data de atualização
             </Button>
           </PopoverContent>
