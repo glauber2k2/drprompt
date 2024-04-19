@@ -15,6 +15,7 @@ export default async function AuthButton() {
             {session?.user?.email?.[0].toUpperCase()}
           </AvatarFallback>
         </Avatar>
+        {session?.user?.email?.toUpperCase()}
       </Button>
     </UserMenu>
   )
