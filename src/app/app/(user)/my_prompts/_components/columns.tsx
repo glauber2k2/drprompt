@@ -1,5 +1,6 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
 import { ColumnDef } from '@tanstack/react-table'
 
 // This type is used to define the shape of our data.
@@ -22,5 +23,15 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'tags',
     header: 'Tags',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cell: ({ getValue }: { getValue: any }) => (
+      <div className="flex items-center gap-2">
+        {getValue().map((tag: string, index: number) => (
+          <Badge key={index} variant={'secondary'}>
+            {tag}
+          </Badge>
+        ))}
+      </div>
+    ),
   },
 ]
