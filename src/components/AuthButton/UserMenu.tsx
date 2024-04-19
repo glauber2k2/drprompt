@@ -5,6 +5,7 @@ import { Button } from '../ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { LogOut, Terminal, User2 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function UserMenu({ children }: { children: ReactNode }) {
   return (
@@ -12,19 +13,16 @@ export default function UserMenu({ children }: { children: ReactNode }) {
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent align="end" className="w-64 flex flex-col">
         <Button
+          asChild
           variant={'ghost'}
           size={'sm'}
           className="justify-between"
-          onClick={() => signOut()}
         >
-          Meus prompts <Terminal size={16} />
+          <Link href={'/app/my_prompts'}>
+            Meus prompts <Terminal size={16} />
+          </Link>
         </Button>
-        <Button
-          variant={'ghost'}
-          size={'sm'}
-          className="justify-between"
-          onClick={() => signOut()}
-        >
+        <Button variant={'ghost'} size={'sm'} className="justify-between">
           Minha conta <User2 size={16} />
         </Button>
         <Button
