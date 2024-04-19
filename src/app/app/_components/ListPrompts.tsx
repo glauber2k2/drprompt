@@ -65,7 +65,7 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
         <Popover>
           <PopoverTrigger asChild>
             <Button variant={'outline'}>
-              Ordenar por nome <ChevronDown size={16} />
+              Ordenar por: <ChevronDown size={16} />
             </Button>
           </PopoverTrigger>
           <PopoverContent>

@@ -15,6 +15,7 @@ export const {
     newUser: '/app',
   },
   adapter: PrismaAdapter(prisma),
+  useSecureCookies: false,
   secret: 'secret',
   providers: [
     EmailProvider({
