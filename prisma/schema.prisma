@@ -64,6 +64,7 @@ model Prompt {
   id                 String  @id @default(cuid())
   title String
   text String
+  tags String[]
   
   user User @relation(fields: [userId], references: [id])
   userId String

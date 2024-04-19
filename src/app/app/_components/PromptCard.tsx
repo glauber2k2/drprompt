@@ -74,15 +74,16 @@ export default function PromptCard({ data }: { data: Prompt }) {
         </TooltipProvider>
       </div>
       <div className="flex items-center gap-2">
-        <Badge variant={'secondary'} className="h-6 px-2 text-xs justify-start">
-          ChatGPT
-        </Badge>
-        <Badge variant={'secondary'} className="h-6 px-2 text-xs justify-start">
-          BingAI
-        </Badge>
-        <Badge variant={'secondary'} className="h-6 px-2 text-xs justify-start">
-          Gemini
-        </Badge>
+        {data.tags &&
+          data.tags.map((tag) => (
+            <Badge
+              key={tag}
+              variant={'secondary'}
+              className="h-6 px-2 text-xs justify-start"
+            >
+              {tag}
+            </Badge>
+          ))}
       </div>
 
       <span className="text-xs mt-2 opacity-95 text-justify">
