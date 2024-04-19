@@ -24,8 +24,15 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
     .filter((prompt) => {
       if (filter) {
         const filterLowerCase = filter.toLowerCase()
-        const promptTitleLowerCase = prompt.title.toLowerCase()
-        return promptTitleLowerCase.includes(filterLowerCase)
+        if (filterLowerCase.startsWith('#')) {
+          const tag = filterLowerCase.slice(1) // Remove o caractere '#' da tag
+          return prompt.tags.some((tagItem) =>
+            tagItem.toLowerCase().includes(tag),
+          )
+        } else {
+          const promptTitleLowerCase = prompt.title.toLowerCase()
+          return promptTitleLowerCase.includes(filterLowerCase)
+        }
       }
       return true
     })
@@ -49,12 +56,12 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
 
   return (
     <div className="mx-auto md:w-2/3 space-y-4">
-      <div className="flex items-center gap-2 justify-center">
+      <div className="flex items-center gap-2 flex-wrap">
         <form className="flex items-center gap-2 border border-neutral-300 dark:border-neutral-800 rounded-md px-4 flex-1">
           <Search size={16} />
           <Input
-            className="border-none focus-visible:ring-[0] ring-offset-0"
-            placeholder="Buscar prompt..."
+            className="border-none focus-visible:ring-[0] ring-offset-0 min-w-16"
+            placeholder="Buscar prompt ou #tag ..."
             onChange={(e) => {
               router.push(
                 pathname + '?' + createQueryString('filter', e.target.value),
@@ -65,35 +72,36 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
         <Popover>
           <PopoverTrigger asChild>
             <Button variant={'outline'}>
-              Ordenar por: <ChevronDown size={16} />
+              Ordenar por <ChevronDown size={16} />
             </Button>
           </PopoverTrigger>
           <PopoverContent>
             <Button
               variant={'ghost'}
+              size={'sm'}
+              className="justify-between gap-2"
               onClick={() => {
                 router.push(pathname + '?' + '')
               }}
             >
-              {order == null && <Check size={16} />}
+              {order == null ? <Check size={16} /> : <div></div>}
               Ordenar por criação
             </Button>
             <Button
               variant={'ghost'}
+              size={'sm'}
+              className="justify-between gap-2"
               onClick={() => {
                 router.push(
                   pathname + '?' + createQueryString('order', 'update'),
                 )
               }}
             >
-              {order == 'update' && <Check size={16} />}
+              {order == 'update' ? <Check size={16} /> : <div></div>}
               Data de atualização
             </Button>
           </PopoverContent>
         </Popover>
-
-        <Button variant={'outline'}>Ordenar</Button>
-        <Button variant={'outline'}>Ordenar</Button>
       </div>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
