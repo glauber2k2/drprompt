@@ -81,7 +81,7 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
               size={'sm'}
               className="justify-between gap-2"
               onClick={() => {
-                router.push(pathname + '?' + '')
+                pathname + '?' + createQueryString('order', '')
               }}
             >
               {order == null ? <Check size={16} /> : <div></div>}
