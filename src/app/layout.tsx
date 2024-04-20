@@ -17,14 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ptBR">
-      <header>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-        <link rel="icon" href="/logo.png" />
-      </header>
+    <html lang="pt-br">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
+      <link rel="icon" href="/logo.png" />
 
       <body className={cn(inter.className, 'h-screen')}>
         {children}
