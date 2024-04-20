@@ -69,7 +69,7 @@ export default function AddPromptModal({
       <DialogTrigger {...rest} onClick={() => setOpenModal(true)}>
         {children}
       </DialogTrigger>
-      <DialogContent className="m-8">
+      <DialogContent className="">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
