@@ -21,7 +21,7 @@ import { DialogTriggerProps } from '@radix-ui/react-dialog'
 import { addOrUpdatePrompt } from './actions'
 import { useToast } from '@/components/ui/use-toast'
 import { Textarea } from '@/components/ui/textarea'
-import { Loader } from 'lucide-react'
+import { Loader, Trash2 } from 'lucide-react'
 
 interface AddPromptModalTypes extends DialogTriggerProps {
   children: ReactNode
@@ -43,6 +43,12 @@ export default function AddPromptModal({
     resolver: zodResolver(upsertPromptSchema),
     defaultValues: formDefaultValues,
   })
+
+  function removeTag(index: number) {
+    const newTags = tags.filter((_, i) => i !== index)
+    setTags(newTags)
+    form.setValue('tags', newTags) // Atualizar o estado dos campos do formulário
+  }
 
   async function onSubmit(values: z.infer<typeof upsertPromptSchema>) {
     if (dataPrompt) {
@@ -104,7 +110,17 @@ export default function AddPromptModal({
                     name={`tags.${index}`}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Tag {index + 1}</FormLabel>
+                        <FormLabel className="flex items-center">
+                          Tag {index + 1}
+                          <Button
+                            type="button"
+                            variant={'link'}
+                            size={'icon'}
+                            onClick={() => removeTag(index)}
+                          >
+                            <Trash2 size={16} className="text-red-500" />
+                          </Button>
+                        </FormLabel>
                         <FormDescription />
                         <FormControl>
                           <Input
