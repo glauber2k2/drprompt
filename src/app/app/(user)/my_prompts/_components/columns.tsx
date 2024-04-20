@@ -15,6 +15,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'id',
     header: 'Id',
+    meta: { className: 'hidden sm:block' },
   },
   {
     accessorKey: 'title',
@@ -23,6 +24,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'tags',
     header: 'Tags',
+    meta: { className: 'hidden sm:block' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cell: ({ getValue }: { getValue: any }) => (
       <div className="flex items-center gap-2">
