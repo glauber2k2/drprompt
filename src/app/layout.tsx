@@ -18,7 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ptBR">
-      <link rel="icon" href="/logo.png" />
+      <header>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <link rel="icon" href="/logo.png" />
+      </header>
+
       <body className={cn(inter.className, 'h-screen')}>
         {children}
         <Toaster />
