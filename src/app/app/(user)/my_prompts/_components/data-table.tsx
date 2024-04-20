@@ -20,6 +20,7 @@ import {
 import MenuPrompt from './MenuPrompt'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
+import { Search } from 'lucide-react'
 
 interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -45,14 +46,15 @@ export function DataTable<TData extends { id: string }, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center my-4 gap-2 border border-neutral-300 dark:border-neutral-800 px-4 rounded-md">
+        <Search size={16} />
         <Input
-          placeholder="Filter emails..."
+          placeholder="Buscar prompt ..."
           value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
             table.getColumn('title')?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm border-none focus-visible:ring-[0] ring-offset-0"
         />
       </div>
 

@@ -79,25 +79,29 @@ export default function ListPrompts({ prompts }: { prompts: Prompt[] }) {
             <Button
               variant={'ghost'}
               size={'sm'}
-              className="justify-between gap-2"
+              className="justify-start gap-2"
               onClick={() => {
-                pathname + '?' + createQueryString('order', '')
+                router.push(pathname + '?' + createQueryString('order', ''))
               }}
             >
-              {order == null ? <Check size={16} /> : <div></div>}
-              Ordenar por criação
+              {!order ? <Check size={16} /> : <div className="w-4"></div>}
+              Data de criação
             </Button>
             <Button
               variant={'ghost'}
               size={'sm'}
-              className="justify-between gap-2"
+              className="justify-start gap-2"
               onClick={() => {
                 router.push(
                   pathname + '?' + createQueryString('order', 'update'),
                 )
               }}
             >
-              {order == 'update' ? <Check size={16} /> : <div></div>}
+              {order == 'update' ? (
+                <Check size={16} />
+              ) : (
+                <div className="w-4"></div>
+              )}
               Data de atualização
             </Button>
           </PopoverContent>
