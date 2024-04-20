@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { headers } from 'next/headers'
 import { userAgent } from 'next/server'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Menu } from 'lucide-react'
 
 function Layout({ children }: { children: ReactNode }) {
   const ua = userAgent({ headers: headers() })
@@ -10,7 +11,7 @@ function Layout({ children }: { children: ReactNode }) {
   if (viewport == 'mobile') {
     return (
       <div className={`h-full`}>
-        <p>Menu</p>
+        <Menu className="m-4" />
 
         {children}
       </div>
