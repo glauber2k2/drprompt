@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthButton from './AuthButton'
+import AuthButton from '../AuthButton'
 import Link from 'next/link'
 
 export default function Header() {
